@@ -4,6 +4,7 @@
     <div class="todos">
       <div v-for="todo in allTodos" v-bind:key="todo.id" class="todo">
         {{ todo.title }}
+        <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
       </div>
     </div>
   </div>
@@ -33,7 +34,7 @@ export default {
   name: "Todos",
   methods: {
     //mapped to the component but not called yet...
-   ... mapActions(["fetchTodos"]) 
+   ... mapActions(["fetchTodos", "deleteTodo"]) 
   },
   computed: mapGetters(["allTodos"]),
   // fetchTodos action is called before the component loads. 
@@ -91,5 +92,13 @@ export default {
     .todos {
       grid-template-columns: 1fr;
     }
+  }
+  i {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #fff;
+    cursor: pointer;
+    color: yellow;
   }
 </style>
