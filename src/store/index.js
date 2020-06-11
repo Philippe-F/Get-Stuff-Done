@@ -4,7 +4,7 @@
 
 import Vuex from "vuex"; 
 import Vue from "vue";
-import Todos from "../modules/Todos"; 
+import Todos from "./modules/todos"; 
 
 // Load Vue
 Vue.use(Vuex); 
