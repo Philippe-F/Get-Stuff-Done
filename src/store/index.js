@@ -1,6 +1,6 @@
 // This store folder is a centralized store for all of our state (data). 
 
-// This is an entrypoint to Vuex and where we combine all of our modu
+// This is an entrypoint to Vuex and where we combine all of our modules. 
 
 import Vuex from "vuex"; 
 import Vue from "vue";

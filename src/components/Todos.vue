@@ -23,10 +23,24 @@
 // Now that we have a way to receive all of the getters from the state we can loop 
 // through them (the todos will be returned in an array) and map each todo to a div.
 
-import { mapGetters } from "vuex"; 
+// We use "mapActions" to call actions, so we add methods object to our export default
+// and pass in the actions we want to use similar to the way mapGetters works.
+// "fetchTodos" returns an object so we use the spread operator on all mapActions to 
+// avoid nested objects.  
+
+import { mapGetters, mapActions } from "vuex"; 
 export default {
   name: "Todos",
-  computed: mapGetters(["allTodos"])
+  methods: {
+    //mapped to the component but not called yet...
+   ... mapActions(["fetchTodos"]) 
+  },
+  computed: mapGetters(["allTodos"]),
+  // fetchTodos action is called before the component loads. 
+  // "computed()" is a lifecycle method that is fired off before the component loads.
+  created() {
+    this.fetchTodos() 
+  }
 }
 </script>
 
