@@ -48,6 +48,14 @@ const actions = {
   },
   async filterTodos({ commit }, e) {
     // Get selected number
+
+    // ParseInt takes in a string representation of a number and outputs the integer.
+    // "e.target.options" returns an object containing the options that are nested inside of the 
+    // select tag. "e.target.options.selectedIndex" returns the index of whichever 
+    // options was selected in relation to its index in the "e.target.options" object.
+    // "e.target.options[e.target.options.selectedIndex].innerText" returns the text 
+    // (the value in the middle of the tags <option>200</option>). 
+
     const limit = parseInt(
       e.target.options[e.target.options.selectedIndex].innerText
     );
@@ -57,12 +65,29 @@ const actions = {
     );
 
     commit('setTodos', response.data);
+  },
+  async updateTodo({ commit }, todo) {
+    const response = await axios.put(
+      `https://jsonplaceholder.typicode.com/todos/${todo.id}`, 
+      todo
+    );
+    
+    commit("changeTodo", response.data)
   }
 };
 const mutations = {
   setTodos: (state, todos) => (state.todos = todos),
   newTodo: (state, todo) => (state.todos.unshift(todo)),
-  removeTodo:  (state, id) => state.todos = state.todos.filter(todo => todo.id !== id)
+  removeTodo:  (state, id) => state.todos = state.todos.filter(todo => todo.id !== id),
+  changeTodo: (state, updatedTodo) => {
+    const index = state.todos.findIndex(todo => todo.id = updatedTodo.id);
+
+    if (index !== -1) {
+      state.todos.splice(index, 1, updatedTodo);
+    }
+
+    // state.todos[updatedTodo.id] = updatedTodo;
+  }
 };
 
 export default {

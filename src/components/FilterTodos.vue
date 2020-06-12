@@ -1,5 +1,10 @@
 <template>
   <div>
+    <!-- The select HTML element has the ability to let events trigger actions in a 
+    browser, like starting a JavaScript when a user clicks on an element. We use 
+    "@change" to listen for changes in the select dropdown and call "filterTodos()" 
+    whenevera change is input. -->
+
     Filter Todos:
     <select @change="filterTodos($event)">
       <option value="200">200</option>

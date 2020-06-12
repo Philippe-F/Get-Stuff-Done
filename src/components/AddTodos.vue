@@ -24,6 +24,7 @@ export default {
     onSubmit(e) {
       e.preventDefault();
       this.addTodo(this.title);
+      this.title = ""
     }
   }
 };
