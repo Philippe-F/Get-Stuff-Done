@@ -25,6 +25,9 @@
 
 <script>
 
+// In order to use the getters from our store modules we need to import "mapGetter"
+// from Vuex which maps getters to our component. It works similar to "connect" 
+// in React / Redux. 
 
 // The way that we impliment the map getter or how we define which getters we want 
 // to use is within the computed property. We add it to our export default, then 
